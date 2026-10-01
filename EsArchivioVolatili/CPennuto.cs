@@ -14,7 +14,7 @@ namespace EsArchivioVolatili
         private string habitat;
         private bool tipoMigratorio;
         private double aperturaAlare;
-        public List<CAvvistamenti> avvistamenti;
+        public List<CAvvistamenti> Avvistamenti { get; set; }
         public CPennuto(int codice, string specie, string habitat, bool tipoMigratorio, double aperturaAlare)
         {
             this.Codice = codice;
@@ -22,7 +22,7 @@ namespace EsArchivioVolatili
             this.Habitat = habitat;
             this.TipoMigratorio = tipoMigratorio;
             this.AperturaAlare = aperturaAlare;
-            avvistamenti = new List<CAvvistamenti>();
+            Avvistamenti = new List<CAvvistamenti>();
         }
         public int Codice
         {
@@ -40,7 +40,7 @@ namespace EsArchivioVolatili
             get => specie;
             set
             {
-                if (string.IsNullOrEmpty(value))
+                if (string.IsNullOrWhiteSpace(value))
                     throw new Exception("Bel pennuto senza nome. Il nome della specie non può essere vuoto");
 
                 specie = value;
@@ -51,7 +51,7 @@ namespace EsArchivioVolatili
             get => habitat;
             set
             {
-                if (string.IsNullOrEmpty(value))
+                if (string.IsNullOrWhiteSpace(value))
                     throw new Exception("Bravo, hai trovato un pennuto senzza habitat. Il valore di habitat non può essere vuoto");
 
                 habitat = value;
@@ -76,23 +76,28 @@ namespace EsArchivioVolatili
         public void AggiungiAvvistamento(DateTime data, string luogo, string note)
         {
             CAvvistamenti avvistamento = new CAvvistamenti(data, luogo, note);
-            avvistamenti.Add(avvistamento);
+            Avvistamenti.Add(avvistamento);
         }
         public string GetAvvistamenti()
         {
             string risultato = "";
 
-            foreach (CAvvistamenti a in avvistamenti)
+            foreach (CAvvistamenti a in Avvistamenti)
             {
                 risultato += a.ToString() + "\n";
             }
 
             return risultato;
         }
+        public int ContaAvvistamenti()
+        {
+            return Avvistamenti.Count;
+        }
         public override string ToString()
         {
-            return $"Codice: {codice}, Specie: {specie}, Habitat: {habitat}, " +
-                   $"Migratore: {tipoMigratorio}, Apertura alare: {aperturaAlare} cm";
+            string migratorio = TipoMigratorio ? "Si" : "No";
+            return $"Codice: {codice}, Specie: {specie}, Habitat: {habitat}, Migratore: {migratorio}, Apertura alare: {aperturaAlare} cm";
+
         }
     }
 }

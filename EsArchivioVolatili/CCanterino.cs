@@ -10,7 +10,7 @@ namespace EsArchivioVolatili
     {
         private string cantoCaratteristico;
 
-        public CCanterino(int codice, string specie, string habitat, bool tipoMigratorio,float aperturaAlare, string cantoCaratteristico): base(codice, specie, habitat, tipoMigratorio, aperturaAlare)
+        public CCanterino(int codice, string specie, string habitat, bool tipoMigratorio,double aperturaAlare, string cantoCaratteristico): base(codice, specie, habitat, tipoMigratorio, aperturaAlare)
         {
             this.CantoCaratteristico = cantoCaratteristico;
         }
@@ -19,8 +19,10 @@ namespace EsArchivioVolatili
             get => cantoCaratteristico;
             set
             {
-                if (string.IsNullOrEmpty(value))
+                if (string.IsNullOrWhiteSpace(value))
                     throw new Exception("SENZA CANTO NON E' CANTERINO");
+
+                cantoCaratteristico = value;
             }
         }
         public override string ToString()

@@ -8,9 +8,9 @@ namespace EsArchivioVolatili
 {
     public class CAcquatico : CPennuto
     {
-        private TipoAcqua tipoAcqua;
+        public TipoAcqua tipoAcqua { get; set; }
 
-        public CAcquatico(int codice, string specie, string habitat, bool tipoMigratorio, float aperturaAlare, TipoAcqua tipoAcqua): base(codice, specie, habitat, tipoMigratorio, aperturaAlare)
+        public CAcquatico(int codice, string specie, string habitat, bool tipoMigratorio, double aperturaAlare, TipoAcqua tipoAcqua): base(codice, specie, habitat, tipoMigratorio, aperturaAlare)
         {
             this.tipoAcqua = tipoAcqua;
         }

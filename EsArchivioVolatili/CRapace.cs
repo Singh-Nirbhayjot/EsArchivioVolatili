@@ -9,7 +9,7 @@ namespace EsArchivioVolatili
     public class CRapace : CPennuto
     {
         private string dieta;
-        public CRapace(int codice, string specie, string habitat, bool tipoMigratorio,float aperturaAlare, string dieta): base(codice, specie, habitat, tipoMigratorio, aperturaAlare)
+        public CRapace(int codice, string specie, string habitat, bool tipoMigratorio,double aperturaAlare, string dieta): base(codice, specie, habitat, tipoMigratorio, aperturaAlare)
         {
             this.Dieta = dieta;
         }
@@ -18,7 +18,7 @@ namespace EsArchivioVolatili
             get => dieta;
             set
             {
-                if (string.IsNullOrEmpty(value))
+                if (string.IsNullOrWhiteSpace(value))
                     throw new Exception("Attento che muore di fame:(. Il valore di dieta non può essere vuoto");
 
                 dieta = value;

@@ -8,8 +8,8 @@ namespace EsArchivioVolatili
 {
     public class CAvvistamenti
     {
-        private DateTime data;
-        private string luogo;
+        private DateTime data; //posso mettere private senza get set perchè non devo visualizzare il valore. C'è il ToString che li mostra
+        private string luogo; //Protected lo userei solo se ci sono classi derivate
         private string note;
         public CAvvistamenti(DateTime data, string luogo, string note)
         {
@@ -44,15 +44,15 @@ namespace EsArchivioVolatili
             get => note;
             set
             {
-                if (string.IsNullOrEmpty(value))
+                if (string.IsNullOrWhiteSpace(value))
                     throw new Exception("Non ti piace scrivere? Nemmeno a me :)");
 
                 note = value;
             }
         }
-        public string ToString()
+        public override string ToString()
         {
-            return $"Avvistamento avvenuto in data: {Data}, in luogo: {Luogo}. \n Note: {Note}";
+            return $"Avvistamento avvenuto in data: {Data.ToShortDateString()}, in luogo: {Luogo}. \n Note: {Note}"; //ToShort... perchè voglio solo giorno mese e anno
         }
     }
 }
